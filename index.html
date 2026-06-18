@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanigelpula Suchitra · Portfolio</title>
+  <!-- Font Awesome Icons (free version) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0b0e14;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      color: #e8edf5;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #141a24;
+      border-radius: 2.5rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      border: 1px solid #2a3343;
+    }
+
+    /* ----- accent colour palette (changed) ----- */
+    :root {
+      --accent: #b388ff;
+      /* soft purple */
+      --accent-light: #d1c4ff;
+      --accent-dark: #7c4dff;
+      --accent-glow: rgba(179, 136, 255, 0.15);
+      --card-bg: #1f2735;
+      --border-dim: #2f3a4b;
+    }
+
+    /* headings & accent elements */
+    h1,
+    h2,
+    h3,
+    .highlight {
+      color: var(--accent-light);
+    }
+
+    a,
+    .icon-link {
+      color: var(--accent);
+      transition: 0.25s ease;
+    }
+
+    a:hover,
+    .icon-link:hover {
+      color: #d9c9ff;
+      text-shadow: 0 0 8px var(--accent-glow);
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      border-left: 6px solid var(--accent);
+      padding-left: 1.2rem;
+      margin-bottom: 1.8rem;
+      color: #f0f3fa;
+    }
+
+    /* header / profile */
+    .profile-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem 2.5rem;
+      margin-bottom: 2.8rem;
+      padding-bottom: 1.8rem;
+      border-bottom: 2px dashed var(--border-dim);
+    }
+
+    .avatar {
+      background: var(--accent-dark);
+      width: 100px;
+      height: 100px;
+      border-radius: 40% 60% 50% 50% / 50% 40% 60% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: #0b0e14;
+      box-shadow: 0 0 0 4px var(--accent-glow), 0 12px 28px rgba(0, 0, 0, 0.5);
+      flex-shrink: 0;
+    }
+
+    .profile-title h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(145deg, #f0f3fa 20%, var(--accent-light) 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.2rem;
+    }
+
+    .profile-title .tagline {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: #b9c4db;
+      background: rgba(179, 136, 255, 0.08);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      backdrop-filter: blur(2px);
+      border: 1px solid #2f3a4b;
+    }
+
+    .profile-desc {
+      margin-top: 0.8rem;
+      color: #cfd9ec;
+      max-width: 700px;
+    }
+
+    /* cards / grid */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 2rem;
+      padding: 1.8rem 1.6rem;
+      border: 1px solid #2a3343;
+      transition: 0.2s;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(2px);
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 8px 24px var(--accent-glow);
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .card h3 i {
+      color: var(--accent);
+      font-size: 1.6rem;
+      width: 2rem;
+    }
+
+    .tech-badge {
+      display: inline-block;
+      background: #2a3343;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: #cbd5ec;
+      border: 1px solid #3d485c;
+      margin-right: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .tech-badge i {
+      margin-right: 4px;
+      color: var(--accent);
+    }
+
+    .project-meta {
+      margin: 0.8rem 0 0.2rem;
+      color: #a2b1d0;
+      font-size: 0.9rem;
+    }
+
+    .project-meta i {
+      color: var(--accent);
+      margin-right: 0.3rem;
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 2.5rem 0;
+      opacity: 0.3;
+    }
+
+    /* education / skills */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #1f2735;
+    }
+
+    .edu-item:last-child {
+      border-bottom: none;
+    }
+
+    .edu-item .year {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-tag {
+      background: #1f2735;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid #2f3a4b;
+      color: #d3def5;
+      transition: 0.15s;
+      letter-spacing: 0.2px;
+    }
+
+    .skill-tag:hover {
+      border-color: var(--accent);
+      background: #2a3343;
+      color: white;
+    }
+
+    /* contact & footer */
+    .contact-links {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      margin: 1.2rem 0 0.5rem;
+    }
+
+    .contact-links a {
+      font-size: 1.3rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #1f2735;
+      padding: 0.4rem 1.2rem;
+      border-radius: 60px;
+      border: 1px solid #2f3a4b;
+      transition: 0.2s;
+    }
+
+    .contact-links a i {
+      font-size: 1.5rem;
+    }
+
+    .contact-links a:hover {
+      background: var(--accent-dark);
+      border-color: var(--accent);
+      color: white;
+      box-shadow: 0 0 18px var(--accent-glow);
+    }
+
+    .message-area {
+      background: #1f2735;
+      border-radius: 2rem;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0 0.5rem;
+      border: 1px solid #2a3343;
+    }
+
+    .message-area .field-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .message-area input,
+    .message-area textarea {
+      background: #0b0e14;
+      border: 1px solid #2f3a4b;
+      border-radius: 60px;
+      padding: 0.8rem 1.4rem;
+      color: #e8edf5;
+      font-size: 0.95rem;
+      flex: 1 1 200px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    .message-area textarea {
+      border-radius: 24px;
+      resize: vertical;
+      min-height: 80px;
+      flex-basis: 300px;
+    }
+
+    .message-area input:focus,
+    .message-area textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-glow);
+    }
+
+    .btn {
+      background: var(--accent-dark);
+      border: none;
+      padding: 0.8rem 2.2rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: #0b0e14;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 1px solid var(--accent);
+      letter-spacing: 0.3px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn i {
+      color: #0b0e14;
+    }
+
+    .btn:hover {
+      background: var(--accent-light);
+      box-shadow: 0 0 20px var(--accent-glow);
+      transform: scale(1.02);
+      color: #0b0e14;
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      text-align: center;
+      color: #6e7d9b;
+      font-size: 0.9rem;
+      border-top: 1px solid #1f2735;
+      padding-top: 2rem;
+    }
+
+    .footer-note i {
+      color: var(--accent);
+      margin: 0 4px;
+    }
+
+    /* ========== RESPONSIVE FINE-TUNING ========== */
+    @media (max-width: 992px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+      .profile-title h1 {
+        font-size: 2.4rem;
+      }
+      .grid-2 {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem 0.75rem;
+      }
+      .container {
+        padding: 1.8rem 1.2rem;
+        border-radius: 2rem;
+      }
+      .profile-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+      .avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2.8rem;
+      }
+      .profile-title h1 {
+        font-size: 2rem;
+      }
+      .profile-title .tagline {
+        font-size: 0.95rem;
+        padding: 0.15rem 0.9rem;
+      }
+      .profile-desc {
+        font-size: 0.95rem;
+      }
+      .section-title {
+        font-size: 1.6rem;
+        padding-left: 1rem;
+        border-left-width: 5px;
+      }
+      .grid-2 {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+      .card h3 {
+        font-size: 1.3rem;
+      }
+      .contact-links {
+        gap: 1.2rem;
+      }
+      .contact-links a {
+        font-size: 1rem;
+        padding: 0.3rem 1rem;
+      }
+      .message-area {
+        padding: 1.5rem 1.2rem;
+      }
+      .message-area .field-group {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+      }
+      .message-area input,
+      .message-area textarea {
+        flex: 1 1 auto;
+        width: 100%;
+        border-radius: 40px;
+      }
+      .message-area textarea {
+        border-radius: 20px;
+        min-height: 70px;
+      }
+      .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 0.7rem 1.5rem;
+      }
+      .footer-note {
+        font-size: 0.8rem;
+        padding-top: 1.5rem;
+        margin-top: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 1.2rem 0.8rem;
+        border-radius: 1.5rem;
+      }
+      .profile-title h1 {
+        font-size: 1.7rem;
+      }
+      .avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 2.2rem;
+      }
+      .profile-title .tagline {
+        font-size: 0.85rem;
+      }
+      .section-title {
+        font-size: 1.3rem;
+        padding-left: 0.8rem;
+        border-left-width: 4px;
+        margin-bottom: 1.2rem;
+      }
+      .card h3 {
+        font-size: 1.15rem;
+        gap: 0.4rem;
+      }
+      .card h3 i {
+        font-size: 1.3rem;
+        width: 1.6rem;
+      }
+      .skill-tag {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.9rem;
+      }
+      .tech-badge {
+        font-size: 0.7rem;
+        padding: 0.15rem 0.7rem;
+      }
+      .contact-links a {
+        font-size: 0.9rem;
+        padding: 0.2rem 0.8rem;
+      }
+      .contact-links a i {
+        font-size: 1.1rem;
+      }
+      .message-area h4 {
+        font-size: 1rem;
+      }
+      .message-area input,
+      .message-area textarea {
+        font-size: 0.85rem;
+        padding: 0.6rem 1rem;
+      }
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+      .footer-note {
+        font-size: 0.7rem;
+      }
+    }
+
+
+    /* ===== THEME TOGGLE STYLES ===== */
+body {
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Light theme */
+body.light-theme {
+  background-color: #f0f2f7;
+  color: #1a1f2e;
+}
+
+body.light-theme .container {
+  background: #ffffff;
+  border-color: #d0d5e0;
+}
+
+body.light-theme .card {
+  background: #f7f9fc;
+  border-color: #d0d5e0;
+}
+
+body.light-theme .card:hover {
+  border-color: var(--accent);
+}
+
+body.light-theme .profile-title h1 {
+  background: linear-gradient(145deg, #1a1f2e 20%, #5a3d8a 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+body.light-theme .profile-title .tagline {
+  color: #3d4459;
+  background: rgba(179, 136, 255, 0.12);
+  border-color: #c8cddb;
+}
+
+body.light-theme .profile-desc {
+  color: #2d3346;
+}
+
+body.light-theme .section-title {
+  color: #1a1f2e;
+}
+
+body.light-theme .profile-header {
+  border-bottom-color: #d0d5e0;
+}
+
+body.light-theme .edu-item {
+  border-bottom-color: #e8ecf3;
+}
+
+body.light-theme .edu-item .year {
+  color: var(--accent-dark);
+}
+
+body.light-theme .skill-tag {
+  background: #eef1f8;
+  border-color: #c8cddb;
+  color: #1a1f2e;
+}
+
+body.light-theme .skill-tag:hover {
+  border-color: var(--accent);
+  background: #ddddf5;
+}
+
+body.light-theme .contact-links a {
+  background: #eef1f8;
+  border-color: #c8cddb;
+  color: #1a1f2e;
+}
+
+body.light-theme .contact-links a:hover {
+  background: var(--accent-dark);
+  color: white;
+}
+
+body.light-theme .message-area {
+  background: #f7f9fc;
+  border-color: #d0d5e0;
+}
+
+body.light-theme .message-area input,
+body.light-theme .message-area textarea {
+  background: #ffffff;
+  border-color: #d0d5e0;
+  color: #1a1f2e;
+}
+
+body.light-theme .message-area input:focus,
+body.light-theme .message-area textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-glow);
+}
+
+body.light-theme .message-area h4 {
+  color: #1a1f2e !important;
+}
+
+body.light-theme .footer-note {
+  color: #6e7d9b;
+  border-top-color: #d0d5e0;
+}
+
+body.light-theme .tech-badge {
+  background: #eef1f8;
+  border-color: #c8cddb;
+  color: #1a1f2e;
+}
+
+body.light-theme .project-meta {
+  color: #4d546b;
+}
+
+body.light-theme .card h3 {
+  color: #1a1f2e;
+}
+
+body.light-theme .card p {
+  color: #2d3346 !important;
+}
+
+body.light-theme .about-text {
+  background: #f7f9fc !important;
+  border-left-color: var(--accent) !important;
+}
+
+body.light-theme .about-text p {
+  color: #1a1f2e !important;
+}
+
+body.light-theme .theme-toggle {
+  background: #eef1f8;
+  border-color: #c8cddb;
+  color: #1a1f2e;
+}
+
+body.light-theme .theme-toggle:hover {
+  border-color: var(--accent);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-dim);
+  border-radius: 60px;
+  padding: 0.6rem 1.2rem;
+  color: #e8edf5;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+
+.theme-toggle i {
+  font-size: 1.2rem;
+  color: var(--accent);
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+        <!-- Theme Toggle Button -->
+    <div class="header-row">
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+        <i class="fas fa-moon"></i> <span id="themeLabel">Dark</span>
+      </button>
+    </div>
+
+    <!-- header -->
+    <div class="profile-header">
+      <div class="avatar">KS</div>
+      <div class="profile-title">
+        <h1>Kanigelpula Suchitra</h1>
+        <div class="tagline">
+          <i class="fas fa-code" style="margin-right: 8px; color: var(--accent);"></i>
+          Python,c,web-Development,flutter,github
+        </div>
+        <div class="profile-desc">
+          Hello! I'm Kanigelpula Suchitra, a Artificial Intelligent and Machine Learning student passionate about Python Programming,
+          Web Development, and Artificial Intelligence. I enjoy building practical projects,
+          learning emerging technologies, and continuously improving my technical skills.
+        </div>
+      </div>
+    </div>
+
+    <!-- about me -->
+    <section style="margin-bottom: 2.5rem;">
+      <h2 class="section-title"><i class="fas fa-user-astronaut" style="margin-right: 12px; color: var(--accent);"></i>About Me</h2>
+      <div style="background: #1f2735; padding: 1.6rem 2rem; border-radius: 2rem; border-left: 6px solid var(--accent);">
+        <p style="color: #d3def5;">
+          I am a passionate and motivated Artificial Intelligent And Machine Learning student with a strong interest in Python Programming,
+          Web Development, and Artificial Intelligence. I enjoy building real-world projects that strengthen
+          my problem-solving abilities and technical knowledge. I have worked on projects including a responsive personal portfolio, Weather Application,
+          HigherLowergame, Prime Number Pyramid,Expense Tracker, temperature Converter, Contact Book, Job scraper. As a quick learner and self-motivated individual, I continuously explore new technologies and
+          strive to gain practical experience through hands-on development. My goal is to build a successful career
+          as a Software Developer.
+        </p>
+      </div>
+    </section>
+
+    <!-- education + skills 2col -->
+    <div class="grid-2">
+      <!-- education -->
+      <div class="card">
+        <h3><i class="fas fa-graduation-cap"></i> Educational Background</h3>
+        <div style="margin-top: 0.8rem;">
+          <div class="edu-item"><span><strong>B-Tech</strong> - AIML</span> <span class="year">8.45 CGPA - 2027</span></div>
+          <div class="edu-item"><span>QIS College of Engineering &amp; Technology</span> <span class="year"></span></div>
+          <div class="edu-item"><span> <strong>Intermediate</strong> - Narayana Junior College</span> <span class="year">85% - 2023</span></div>
+          <div class="edu-item"><span><strong>10th</strong> - Narayana E-Techno School</span> <span class="year">100% - 2021</span></div>
+        </div>
+      </div>
+
+      <!-- skills -->
+      <div class="card">
+        <h3><i class="fas fa-tools"></i> Skills &amp; Technologies</h3>
+        <div class="skill-tags">
+          <span class="skill-tag"><i class="fab fa-python" style="color: var(--accent);"></i> Python</span>
+          <span class="skill-tag"><i class="fab fa-html5"></i> HTML</span>
+          <span class="skill-tag"><i class="fab fa-css3-alt"></i> CSS</span>
+          <span class="skill-tag"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="skill-tag"><i class="fas fa-database"></i> SQL</span>
+          <span class="skill-tag"><i class="fas fa-chart-simple"></i> Github</span>
+          <span class="skill-tag"><i class="fas fa-brain"></i> Artificial Intelligence</span>
+          <span class="skill-tag"><i class="fas fa-robot"></i> Machine Learning</span>
+        </div>
+        <div style="margin-top: 1.2rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span class="tech-badge"><i class="fas fa-check-circle"></i> Pandas</span>
+          <span class="tech-badge"><i class="fas fa-check-circle"></i> NumPy</span>
+          <span class="tech-badge"><i class="fas fa-check-circle"></i> Math</span>
+          <span class="tech-badge"><i class="fas fa-check-circle"></i> JSON</span>
+          <span class="tech-badge"><i class="fas fa-check-circle"></i> CRUD </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- featured projects (5) -->
+<h2 class="section-title" style="margin-top: 2.8rem;">
+    <i class="fas fa-laptop-code" style="margin-right: 12px; color: var(--accent);"></i>Featured Projects
+</h2>
+<div class="grid-2">
+    <!-- card 1: Responsive Personal Portfolio -->
+    <div class="card">
+        <h3><i class="fas fa-user-circle"></i> Responsive Personal Portfolio</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A fully responsive personal portfolio website built with HTML, CSS, and JavaScript. Features a modern dark theme, smooth animations, and adaptive layout for all devices.</p>
+        <div class="project-meta"><i class="fas fa-code"></i> HTML · CSS · JavaScript · Responsive Design</div>
+        <span class="tech-badge"><i class="fab fa-html5"></i> HTML</span>
+        <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS</span>
+        <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+    </div>
+
+    <!-- card 2: Weather Application -->
+    <div class="card">
+        <h3><i class="fas fa-cloud-sun"></i> Weather Application</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">Real-time weather application using a public API. Users can search any city to view current temperature, humidity, wind speed, and weather conditions.</p>
+        <div class="project-meta"><i class="fas fa-cloud"></i> API Integration · JSON · Requests</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">Requests</span>
+        <span class="tech-badge">BeautifulSoup</span>
+    </div>
+
+    <!-- card 3: Higher Lower Game -->
+    <div class="card">
+        <h3><i class="fas fa-arrow-up"></i> Higher Lower Game</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A CLI-based game where users guess whether the next number or celebrity follower count is higher or lower. Built with Python using conditional logic and random data.</p>
+        <div class="project-meta"><i class="fas fa-code"></i> Python · Random Module · Loops</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">Random</span>
+        <span class="tech-badge">Conditionals</span>
+    </div>
+
+    <!-- card 4: Prime Number Pyramid -->
+    <div class="card">
+        <h3><i class="fas fa-layer-group"></i> Prime Number Pyramid</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A Python program that generates a pyramid pattern using prime numbers. Demonstrates nested loops, prime number checking, and pattern printing.</p>
+        <div class="project-meta"><i class="fas fa-code"></i> Python · Loops · Prime Number Logic</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">Math</span>
+        <span class="tech-badge">Pattern Printing</span>
+    </div>
+
+    <!-- card 5: Expense Tracker -->
+    <div class="card">
+        <h3><i class="fas fa-wallet"></i> Expense Tracker</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A Python-based CLI expense tracker that allows users to add, view, delete, and analyze expenses. Stores data in a CSV or JSON file for persistence.</p>
+        <div class="project-meta"><i class="fas fa-database"></i> Python · File Handling · CSV/JSON</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">File I/O</span>
+        <span class="tech-badge">JSON</span>
+    </div>
+
+    <!-- card 6: Temperature Converter -->
+    <div class="card">
+        <h3><i class="fas fa-thermometer-half"></i> Temperature Converter</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A simple GUI or CLI tool that converts temperatures between Celsius, Fahrenheit, and Kelvin. Built with Python using Tkinter or plain input logic.</p>
+        <div class="project-meta"><i class="fas fa-code"></i> Python · Tkinter / CLI · Math</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">Tkinter</span>
+        <span class="tech-badge">Math</span>
+    </div>
+
+    <!-- card 7: Contact Book -->
+    <div class="card">
+        <h3><i class="fas fa-address-book"></i> Contact Book</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A Python-based contact management system with add, search, update, and delete features. Stores contacts in a SQLite database or JSON file.</p>
+        <div class="project-meta"><i class="fas fa-database"></i> Python · SQLite · CRUD Operations</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">SQLite</span>
+        <span class="tech-badge">CRUD</span>
+    </div>
+
+    <!-- card 8: Job Scraper -->
+    <div class="card">
+        <h3><i class="fas fa-briefcase"></i> Job Scraper</h3>
+        <p style="color: #cbd5ec; font-size: 0.95rem;">A web scraping tool that extracts job listings from popular job boards using BeautifulSoup and Requests. Filters and saves data to a CSV file.</p>
+        <div class="project-meta"><i class="fas fa-cloud"></i> Web Scraping · BeautifulSoup · Requests</div>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge">BeautifulSoup</span>
+        <span class="tech-badge">Requests</span>
+        <span class="tech-badge">CSV</span>
+    </div>
+</div>
+
+    <!-- contact & message -->
+<hr />
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem;">
+  <div>
+    <h3 style="color: var(--accent-light);"><i class="fas fa-paper-plane" style="margin-right: 10px;"></i>Keep In Contact</h3>
+    <div class="contact-links">
+      <a href="https://github.com/Suchi0152" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-github"></i> Github
+      </a>
+      <a href="https://www.linkedin.com/in/kanigelpulasuchitra" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-linkedin-in"></i> LinkedIn
+      </a>
+      <a href="mailto:kanigelpulasuchitra@gmail.com" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-envelope"></i> Email
+      </a>
+    </div>
+  </div>
+</div>
+
+    <!-- send message -->
+<div class="message-area">
+  <h4 style="color: var(--accent-light); margin-bottom: 1rem; display: flex; gap: 8px;">
+    <i class="fas fa-pen-fancy" style="color: var(--accent);"></i>Send Message
+  </h4>
+  <div class="field-group">
+    <input type="email" id="senderEmail" placeholder="Your Email" />
+    <textarea id="senderMessage" placeholder="Your Message"></textarea>
+    <button class="btn" onclick="sendEmail()">
+      <i class="fas fa-paper-plane"></i> Send
+    </button>
+  </div>
+</div>
+
+<script>
+  function sendEmail() {
+    const email = document.getElementById('senderEmail').value.trim();
+    const message = document.getElementById('senderMessage').value.trim();
+    
+    if (!email) {
+      alert('Please enter your email address.');
+      return;
+    }
+    if (!message) {
+      alert('Please enter your message.');
+      return;
+    }
+    
+    // Your email address
+    const recipient = 'kanigelpulasuchitra@gmail.com';
+    
+    // Create the mailto link
+    const subject = encodeURIComponent('Message from Portfolio Visitor');
+    const body = encodeURIComponent(
+      `From: ${email}\n\nMessage:\n${message}`
+    );
+    
+    // Open default email client
+    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+  }
+</script>
+    <!-- footer -->
+    <div class="footer-note">
+      <i class="fas fa-code"></i> with <i style="color: var(--accent);"></i> © 2026 Kanigelpula Suchitra · Personal Portfolio
+    </div>
+
+  </div>
+
+
+  <script>
+  function toggleTheme() {
+    const body = document.body;
+    const themeToggle = document.getElementById('themeToggle');
+    const themeLabel = document.getElementById('themeLabel');
+    const icon = themeToggle.querySelector('i');
+    
+    body.classList.toggle('light-theme');
+    
+    if (body.classList.contains('light-theme')) {
+      themeLabel.textContent = 'Light';
+      icon.className = 'fas fa-sun';
+      localStorage.setItem('theme', 'light');
+    } else {
+      themeLabel.textContent = 'Dark';
+      icon.className = 'fas fa-moon';
+      localStorage.setItem('theme', 'dark');
+    }
+  }
+
+  // Load saved theme on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    const savedTheme = localStorage.getItem('theme');
+    const themeLabel = document.getElementById('themeLabel');
+    const icon = document.querySelector('#themeToggle i');
+    
+    if (savedTheme === 'light') {
+      document.body.classList.add('light-theme');
+      themeLabel.textContent = 'Light';
+      icon.className = 'fas fa-sun';
+    } else {
+      themeLabel.textContent = 'Dark';
+      icon.className = 'fas fa-moon';
+    }
+  });
+</script>
+</body>
+</html>
