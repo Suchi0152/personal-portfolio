@@ -24,4 +24,4 @@ Visit the live site here: [https://suchi0152.github.io/personal-portfolio/](http
 *   **GitHub:** [Suchi0152](https://github.com/Suchi0152)
 
 ---
-*Created with ❤️ by Kanigelpula Suchitra*
+*Created with by Kanigelpula Suchitra*
